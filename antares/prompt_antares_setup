@@ -1,83 +1,85 @@
 
-###
-### You can re-define the following variables in your .zshrc file
-### in order to customize the appearance of the prompt
-###
+antares_setup()
+{
+	###
+	### You can re-define the following variables in your .zshrc file
+	### in order to customize the appearance of the prompt
+	###
 
-# The indentation of the rprompt
-ZLE_RPROMPT_INDENT=${ZLE_RPROMPT_INDENT:-0}
+	# The indentation of the rprompt
+	ZLE_RPROMPT_INDENT=${ZLE_RPROMPT_INDENT:-0}
 
-# Whether to use oh-my-zsh's git-prompt plugin
-# or the builtin logic written in this file
-ZSH_ANTARES_USE_OHMYZSH_GIT_PROMPT=""
+	# Whether to use oh-my-zsh's git-prompt plugin
+	# or the builtin logic written in this file
+	ZSH_ANTARES_USE_OHMYZSH_GIT_PROMPT=""
 
-# Whether to gather additional details about the git status
-# This option only applies when using the builtin logic
-# Usefull when dealing with huge repositories to speed things up
-ZSH_ANTARES_USE_LIGHT_GIT_MODE=""
+	# Whether to gather additional details about the git status
+	# This option only applies when using the builtin logic
+	# Usefull when dealing with huge repositories to speed things up
+	ZSH_ANTARES_USE_LIGHT_GIT_MODE=""
 
-# The colors to use for the various elements of the prompt
-ZSH_ANTARES_FG_EXECTIME="#dd00ff"
-ZSH_ANTARES_FG_ERRVAL="#c31a1a"
-ZSH_ANTARES_FG_DECO="#ffffff"
-ZSH_ANTARES_FG_PWD_OK="#ffffff"
-ZSH_ANTARES_BG_PWD_OK="#0055FF"
-ZSH_ANTARES_FG_PWD_ERR="#ffffff"
-ZSH_ANTARES_BG_PWD_ERR="#c31a1a"
-ZSH_ANTARES_FG_GIT_INIT="#000000"
-ZSH_ANTARES_BG_GIT_INIT="#b5f3a1"
-ZSH_ANTARES_FG_GIT_BARE="#000000"
-ZSH_ANTARES_BG_GIT_BARE="#b07a4e"
-ZSH_ANTARES_FG_GIT_BRANCH="#000000"
-ZSH_ANTARES_BG_GIT_BRANCH="#47cc2b"
-ZSH_ANTARES_FG_GIT_DETACH="#000000"
-ZSH_ANTARES_BG_GIT_DETACH="#eeaa22"
-ZSH_ANTARES_FG_GIT_CONFLICT="#000000"
-ZSH_ANTARES_BG_GIT_CONFLICT="#c31a1a"
-ZSH_ANTARES_FG_GIT_AHEAD="#cfcfcf"
-ZSH_ANTARES_FG_GIT_BEHIND="#9f9f9f"
-ZSH_ANTARES_FG_GIT_STAGED="#6cc6ee"
-ZSH_ANTARES_FG_GIT_ADDED="#04c304"
-ZSH_ANTARES_FG_GIT_DELETED="#e7165a"
-ZSH_ANTARES_FG_GIT_CHANGED="#ee9931"
-ZSH_ANTARES_FG_GIT_CONFLICTS="#ff0000"
-ZSH_ANTARES_FG_GIT_UNTRACKED="#bbffff"
-ZSH_ANTARES_FG_GIT_STASHED="#eaa0ff"
-ZSH_ANTARES_FG_GIT_TAG="#ffffff"
-ZSH_ANTARES_FG_JOBS="#9f9f9f"
-ZSH_ANTARES_FG_PRIVILEDGES="#ffdd44"
+	# The colors to use for the various elements of the prompt
+	ZSH_ANTARES_FG_EXECTIME="#dd00ff"
+	ZSH_ANTARES_FG_ERRVAL="#c31a1a"
+	ZSH_ANTARES_FG_DECO="#ffffff"
+	ZSH_ANTARES_FG_PWD_OK="#ffffff"
+	ZSH_ANTARES_BG_PWD_OK="#0055FF"
+	ZSH_ANTARES_FG_PWD_ERR="#ffffff"
+	ZSH_ANTARES_BG_PWD_ERR="#c31a1a"
+	ZSH_ANTARES_FG_GIT_INIT="#000000"
+	ZSH_ANTARES_BG_GIT_INIT="#b5f3a1"
+	ZSH_ANTARES_FG_GIT_BARE="#000000"
+	ZSH_ANTARES_BG_GIT_BARE="#b07a4e"
+	ZSH_ANTARES_FG_GIT_BRANCH="#000000"
+	ZSH_ANTARES_BG_GIT_BRANCH="#47cc2b"
+	ZSH_ANTARES_FG_GIT_DETACH="#000000"
+	ZSH_ANTARES_BG_GIT_DETACH="#eeaa22"
+	ZSH_ANTARES_FG_GIT_CONFLICT="#000000"
+	ZSH_ANTARES_BG_GIT_CONFLICT="#c31a1a"
+	ZSH_ANTARES_FG_GIT_AHEAD="#cfcfcf"
+	ZSH_ANTARES_FG_GIT_BEHIND="#9f9f9f"
+	ZSH_ANTARES_FG_GIT_STAGED="#6cc6ee"
+	ZSH_ANTARES_FG_GIT_ADDED="#04c304"
+	ZSH_ANTARES_FG_GIT_DELETED="#e7165a"
+	ZSH_ANTARES_FG_GIT_CHANGED="#ee9931"
+	ZSH_ANTARES_FG_GIT_CONFLICTS="#ff0000"
+	ZSH_ANTARES_FG_GIT_UNTRACKED="#bbffff"
+	ZSH_ANTARES_FG_GIT_STASHED="#eaa0ff"
+	ZSH_ANTARES_FG_GIT_TAG="#ffffff"
+	ZSH_ANTARES_FG_JOBS="#9f9f9f"
+	ZSH_ANTARES_FG_PRIVILEDGES="#ffdd44"
 
-# The characters (or strings, by will) to use for some of the elements
-ZSH_ANTARES_STR_GIT_BARE="⛁"
-ZSH_ANTARES_STR_GIT_AHEAD="￪"
-ZSH_ANTARES_STR_GIT_BEHIND="￬"
-ZSH_ANTARES_STR_GIT_STAGED="●"
-ZSH_ANTARES_STR_GIT_ADDED="✚"
-ZSH_ANTARES_STR_GIT_DELETED="━"
-ZSH_ANTARES_STR_GIT_CHANGED="✱"
-ZSH_ANTARES_STR_GIT_CONFLICTS="✖"
-ZSH_ANTARES_STR_GIT_UNTRACKED="❍"
-ZSH_ANTARES_STR_GIT_STASHED="⚑"
-ZSH_ANTARES_STR_GIT_TAG="🏲"
-ZSH_ANTARES_STR_JOBS="⚙"
-ZSH_ANTARES_STR_ROOT="#"
-ZSH_ANTARES_STR_USER="$"
+	# The characters (or strings, by will) to use for some of the elements
+	ZSH_ANTARES_STR_GIT_BARE="⛁"
+	ZSH_ANTARES_STR_GIT_AHEAD="￪"
+	ZSH_ANTARES_STR_GIT_BEHIND="￬"
+	ZSH_ANTARES_STR_GIT_STAGED="●"
+	ZSH_ANTARES_STR_GIT_ADDED="✚"
+	ZSH_ANTARES_STR_GIT_DELETED="━"
+	ZSH_ANTARES_STR_GIT_CHANGED="✱"
+	ZSH_ANTARES_STR_GIT_CONFLICTS="✖"
+	ZSH_ANTARES_STR_GIT_UNTRACKED="❍"
+	ZSH_ANTARES_STR_GIT_STASHED="⚑"
+	ZSH_ANTARES_STR_GIT_TAG="🏲"
+	ZSH_ANTARES_STR_JOBS="⚙"
+	ZSH_ANTARES_STR_ROOT="#"
+	ZSH_ANTARES_STR_USER="$"
 
-# The path expansion to use to display the pwd
-ZSH_ANTARES_PATHVAR='%~'
+	# The path expansion to use to display the pwd
+	ZSH_ANTARES_PATHVAR='%~'
 
-# The minimum amount of time (in seconds) a command shall take to complete
-# in order to display the execution time in the prompt
-ZSH_ANTARES_MIN_EXEC_TIME=0
+	# The minimum amount of time (in seconds) a command shall take to complete
+	# in order to display the execution time in the prompt
+	ZSH_ANTARES_MIN_EXEC_TIME=0
 
-# The control character used to insert a new line
-# You shouldn't edit this variable, but if you really want to...
-ZSH_ANTARES_LINEFEED=$'\n'
+	# The control character used to insert a new line
+	# You shouldn't edit this variable, but if you really want to...
+	ZSH_ANTARES_LINEFEED=$'\n'
 
-###
-### End of the re-definable section
-###
-
+	###
+	### End of the re-definable section
+	###
+}
 
 antares_update_git_status()
 {
@@ -385,6 +387,81 @@ antares_cleanup()
 	add-zsh-hook -d precmd antares_precmd
 	add-zsh-hook -d preexec antares_preexec
 	PS1=""; RPS1=""
+	unset GIT_BRANCH
+	unset GIT_AHEAD
+	unset GIT_BEHIND
+	unset GIT_STAGED
+	unset GIT_ADDED
+	unset GIT_DELETED
+	unset GIT_CHANGED
+	unset GIT_CONFLICTS
+	unset GIT_UNTRACKED
+	unset GIT_STASHED
+	unset ZSH_ANTARES_EXEC_FLAG
+	unset ZSH_ANTARES_EXEC_START
+	unset ZSH_ANTARES_USE_OHMYZSH_GIT_PROMPT
+	unset ZSH_ANTARES_USE_LIGHT_GIT_MODE
+	unset ZSH_ANTARES_FG_EXECTIME
+	unset ZSH_ANTARES_FG_ERRVAL
+	unset ZSH_ANTARES_FG_DECO
+	unset ZSH_ANTARES_FG_PWD_OK
+	unset ZSH_ANTARES_BG_PWD_OK
+	unset ZSH_ANTARES_FG_PWD_ERR
+	unset ZSH_ANTARES_BG_PWD_ERR
+	unset ZSH_ANTARES_FG_GIT_INIT
+	unset ZSH_ANTARES_BG_GIT_INIT
+	unset ZSH_ANTARES_FG_GIT_BARE
+	unset ZSH_ANTARES_BG_GIT_BARE
+	unset ZSH_ANTARES_FG_GIT_BRANCH
+	unset ZSH_ANTARES_BG_GIT_BRANCH
+	unset ZSH_ANTARES_FG_GIT_DETACH
+	unset ZSH_ANTARES_BG_GIT_DETACH
+	unset ZSH_ANTARES_FG_GIT_CONFLICT
+	unset ZSH_ANTARES_BG_GIT_CONFLICT
+	unset ZSH_ANTARES_FG_GIT_AHEAD
+	unset ZSH_ANTARES_FG_GIT_BEHIND
+	unset ZSH_ANTARES_FG_GIT_STAGED
+	unset ZSH_ANTARES_FG_GIT_ADDED
+	unset ZSH_ANTARES_FG_GIT_DELETED
+	unset ZSH_ANTARES_FG_GIT_CHANGED
+	unset ZSH_ANTARES_FG_GIT_CONFLICTS
+	unset ZSH_ANTARES_FG_GIT_UNTRACKED
+	unset ZSH_ANTARES_FG_GIT_STASHED
+	unset ZSH_ANTARES_FG_GIT_TAG
+	unset ZSH_ANTARES_FG_JOBS
+	unset ZSH_ANTARES_FG_PRIVILEDGES
+	unset ZSH_ANTARES_STR_GIT_BARE
+	unset ZSH_ANTARES_STR_GIT_AHEAD
+	unset ZSH_ANTARES_STR_GIT_BEHIND
+	unset ZSH_ANTARES_STR_GIT_STAGED
+	unset ZSH_ANTARES_STR_GIT_ADDED
+	unset ZSH_ANTARES_STR_GIT_DELETED
+	unset ZSH_ANTARES_STR_GIT_CHANGED
+	unset ZSH_ANTARES_STR_GIT_CONFLICTS
+	unset ZSH_ANTARES_STR_GIT_UNTRACKED
+	unset ZSH_ANTARES_STR_GIT_STASHED
+	unset ZSH_ANTARES_STR_GIT_TAG
+	unset ZSH_ANTARES_STR_JOBS
+	unset ZSH_ANTARES_STR_ROOT
+	unset ZSH_ANTARES_STR_USER
+	unset ZSH_ANTARES_PATHVAR
+	unset ZSH_ANTARES_MIN_EXEC_TIME
+	unset ZSH_ANTARES_LINEFEED
+	unset ZSH_ANTARES_GIT_STATUS
+	unset ZSH_ANTARES_GIT_IN_WORKING_TREE
+	unset ZSH_ANTARES_GIT_IS_INIT_REPO
+	unset ZSH_ANTARES_GIT_IS_BARE_REPO
+	unset ZSH_ANTARES_GIT_IS_DETACHED_HEAD
+	unset ZSH_ANTARES_GIT_HAS_CONFLICTS
+	unset ZSH_ANTARES_GIT_HAS_TAGS
+	unset ZSH_ANTARES_GIT_TAG
+	unset ZSH_ANTARES_ERR_CODE
+	unset ZSH_ANTARES_RETURN
+	unset ZSH_ANTARES_PWD
+	unset ZSH_ANTARES_FILLER
+	unset ZSH_ANTARES_GIT_BRANCH
+	unset ZSH_ANTARES_JOBS
+	unset ZSH_ANTARES_PRIVILEDGES
 }
 
 prompt_antares_setup()
@@ -402,6 +479,8 @@ prompt_antares_setup()
 	prompt_opts=(cr percent subst)
 
 	prompt_cleanup 'antares_cleanup'
+	
+	antares_setup
 }
 
 prompt_antares_setup "$@"
