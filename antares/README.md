@@ -1,14 +1,14 @@
 # Antares
 
-`antares` is a theme for `zsh` which make use of colors to provide additional information to the user
+`antares` is a theme for the `zsh` prompt that make use of colors to provide additional information to the user
 
-![screenshot](screenshot.png)
+![screenshot](./screenshot.png)
 
 ## Table of content
 
 - [Installation](#install)
   - [As zsh prompt theme](#prompt)
-  - [As oh-my-zsh theme](#oh-my-zsh)
+  - [As OhMyZsh theme](#ohmyzsh)
 - [Customization](#customize)
   - [Customize the behavior](#behavior)
   - [Customize the colors](#colors)
@@ -19,15 +19,15 @@
 
 ## Install
 
-The theme can be [installed as prompt theme](#prompt) or [added to oh-my-zsh themes](#oh-my-zsh)
+The theme can be [installed as prompt theme](#prompt) or [added to oh-my-zsh themes](#ohmyzsh)
 
 ### Prompt
 
-Zsh loads themes from directories in `$fpath` at runtime. You can create a directory for custom themes in a `$HOME` path to have them available for a [user only](#user-only), or put themes in a system directory to have them available for [every user](#syste-wide).
+`zsh` loads themes from directories in `$fpath` at runtime. You can create a directory for custom themes in a `$HOME` path to have them available for a [user only](#user-only), or put themes in a system directory to have them available for [every user](#system-wide).
 
 #### User only
 
-The following step will assume that `$HOME/.local/share/zsh/functions/Prompts` is your directory of choice, but you can use any directory you wish (just replace it in the commands).
+The following step will assume that `$HOME/.local/share/zsh/functions/Prompts` is your directory of choice, but you can use any directory you wish.
 
 Copy the theme:<br/>
 ```zsh
@@ -51,11 +51,11 @@ prompt antares
 
 #### System-wide
 
-The following step will assume that `/usr/share/share/zsh/functions/Prompts` is your directory of choice, but you can use any directory you wish (among the ones that are in `$fpath` by default).
+The following step will assume that `/usr/share/zsh/functions/Prompts` is your directory of choice, but you can use any directory you wish (among the ones that are in `$fpath` by default).
 
 Copy the theme:<br/>
 ```zsh
-sudo cp prompt_antares_setup /usr/share/share/zsh/functions/Prompts
+sudo cp prompt_antares_setup /usr/share/zsh/functions/Prompts
 ```
 
 Or create a symlink if you prefer:<br/>
@@ -70,17 +70,25 @@ prompt antares
 
 #### Troubleshooting
 
-If you encounter this error when launching the terminal<br>
-`zsh: command not found: prompt`
+If you encounter this kind of error when launching the terminal<br>
+`command not found: prompt`
 
-You need to insert the following lines in `~/.zshrc`, **before** the point where you load the theme:<br/>
+You need to insert the following lines in `~/.zshrc`, **before** the point where you load the theme, but **after** the point where you add the custom folder to `$fpath` (if you chose the [user only](#user-only) method):<br/>
 ```zsh
 autoload -Uz promptinit
 promptinit
 ```
 
-For example, the `~/.zshrc` file may look like this:<br/>
+For example, the `.zshrc` file may look like this for a [system-wide](#system-wide) installation:<br/>
 ```zsh
+autoload -Uz promptinit
+promptinit
+prompt antares
+```
+
+Or like this for a [user-only](#user-only) installation:<br/>
+```zsh
+fpath=("$HOME/.local/share/zsh/functions/Prompts" "$fpath[@]")
 autoload -Uz promptinit
 promptinit
 prompt antares
@@ -90,21 +98,21 @@ prompt antares
 
 If you see the `prompt` help message when launching the terminal
 
-First check that the the folder where you installed the theme is actually in "$fpath".
+First check that the the folder where you installed the theme is actually in `$fpath`.
 
 If you followed the [user only](#user-only) instructions, check for a typo in the path you inserted in the `.zshrc` file.<br/>
-If everything seems fine, make sure that the theme is loaded **after** the point where the folder is added to `$fpath`.
-For example, the `~/.zshrc` file may look like this:<br/>
+If everything seems fine, make sure that the theme is loaded **after** the point where the folder is added to `$fpath`.<br/>
+For example, the `.zshrc` file may look like this:<br/>
 ```zsh
 fpath=("$HOME/.local/share/zsh/functions/Prompts" "$fpath[@]")
 prompt antares
 ```
 
-### Oh-my-zsh
+### OhMyZsh
 
-The following step will assume that `$HOME/.oh-my-zsh` is the place where `oh-my-zsh` is installed. If you have a custom installation path, just replace it in the following commands
+The following step will assume that `$HOME/.oh-my-zsh` is the place where `oh-my-zsh` is installed. If you have a custom installation path, just use it instead.
 
-To have `antares` available in `oh-my-zsh`, you can either place it in `$HOME/.oh-my-zsh/themes` or `$HOME/.oh-my-zsh/custom/themes`. Assuming you want to place it in `$HOME/.oh-my-zsh/themes`:<br/>
+To have `antares` available in `oh-my-zsh`, you can either place it in `$HOME/.oh-my-zsh/themes` or `$HOME/.oh-my-zsh/custom/themes`. Assuming you chose to place it in `$HOME/.oh-my-zsh/themes`:<br/>
 ```zsh
 cp antares.zsh-theme "$HOME/.oh-my-zsh/themes"
 ```
@@ -120,17 +128,19 @@ The theme can be customized by re-defining some variables in the `.zshrc` file, 
 
 ### Behavior
 
+Some aspects of the behavior can be customized with the following variables:
+
 `ZSH_ANTARES_USE_OHMYZSH_GIT_PROMPT`
 
 By default `antares` will use its own logic to gather information about a git directory, but this will cause a doubled performance overhead if `oh-my-zsh`'s `git-prompt` plugin is enabled.<br/>
-For this reason, the builtin logic can be partially turned off by setting this variable to any value other than an empty string, so that `antares` will make use of `oh-my-zsh`'s `git-prompt` plugin to get informations about a git directory.<br/>
+For this reason, the builtin logic can be partially turned off by setting this variable to any value other than an empty string, so that `antares` will make use of `oh-my-zsh`'s `git-prompt` plugin to get information about a git directory.<br/>
 For this to work correctly, the plugin must be enabled.
 
 `ZSH_ANTARES_USE_LIGHT_GIT_MODE`
 
 This option is only available when using the builtin git logic and will be ignored if `ZSH_ANTARES_USE_OHMYZSH_GIT_PROMPT` is enabled.<br/>
 By setting this variable to any value other than an empty string, only basic information will be fetched from git.<br/>
-This is particulary useful when working with huge repositories in order to have a performance boost. By the way, this option can also be enable in order to reduce the amount of information displayed.
+This is particularly useful when working with huge repositories in order to have a performance boost. By the way, this option can also be enabled in order to reduce the amount of information displayed.
 
 `ZSH_ANTARES_MIN_EXEC_TIME`
 
@@ -139,9 +149,9 @@ Setting this variable to a negative value disables the feature, so that executio
 
 ### Colors
 
-`antares` makes heavy use of colors, but not every terminal has the same color schemes. For this reason, any element's color can be customized at will.
+`antares` makes heavy use of colors, but not every terminal has the same color schemes, and not every user has the same taste about colors. For this reason, any element's color can be customized at will.
 
-The color must be set as hex value, preceeded by the hashtag character and enclosed in double quotes. For example:<br/>
+The color must be set as hex value, preceded by the hashtag character and enclosed in double quotes. For example:<br/>
 `ZSH_ANTARES_FG_DECO="#f0f0f0"`
 
 Variables' names are composed to be almost self-explanatory:
@@ -150,7 +160,7 @@ Variables' names are composed to be almost self-explanatory:
   - `BG` represents a background color
   - anything that follows indicates the element it applies to
 
-The following is the list of available options for the colors:<br/>
+The following is the list of all the available options for the colors:<br/>
 `ZSH_ANTARES_FG_EXECTIME`<br/>
 `ZSH_ANTARES_FG_ERRVAL`<br/>
 `ZSH_ANTARES_FG_DECO`<br/>
@@ -183,9 +193,9 @@ The following is the list of available options for the colors:<br/>
 
 ### Symbols
 
-All the various used can be replaced with custom symbols (or strings, if one really wants to...).
+All the various symbols used can be replaced with custom symbols (or strings, if one really wants to...).
 
-The only rule for the symbol is that it must be composed of valid unicode character(s), enclosed in double quotes. For example:<br/>
+The only rule for the symbol is that it must be (composed of) a valid Unicode character(s), enclosed in double quotes. For example:<br/>
 `ZSH_ANTARES_STR_ROOT="👽"`
 
 Variables' names are composed to be almost self-explanatory, they basically follow the same rules as for colors' variables.
@@ -212,7 +222,7 @@ Further customization can be applied by editing the remaining variables:
 
 `ZSH_ANTARES_PATHVAR`
 
-The path expansion to use for the pwd, see the [zsh manual]() for available values
+The path expansion to use for the pwd, see the [zsh manual](https://zsh-manual.netlify.app/prompt-expansion) for available values
 
 `ZLE_RPROMPT_INDENT`
 
@@ -223,5 +233,5 @@ It defines the indentation of the right-side prompt. Namely, how many of spaces 
 
 #### Updating
 
-Keep the installed theme up-to-date by cloning this repo in a folder of you choice and linking instead of copying, so that at any time you can pull the latest updates in the repo folder and they will be reflected to the installed file by magic<br/>
+Keep the installed theme up-to-date by cloning this repo in a folder of your choice and use file linking instead of copying, so that at any time you can pull the latest updates in the repo folder and they will be reflected to the installed file by magic 🪄<br/>
 
