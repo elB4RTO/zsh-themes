@@ -464,6 +464,14 @@ antares_cleanup()
 	unset ZSH_ANTARES_PRIVILEDGES
 }
 
+prompt_antares_help()
+{
+	print "\
+A customizable prompt with built-in logic to display the status of git
+directories, that makes use of colors to comunicate additional information
+to the user. See the README to know more about costomization."
+}
+
 prompt_antares_setup()
 {
 	autoload -U add-zsh-hook
